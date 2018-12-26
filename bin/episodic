@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+const { version } = require('../package.json')
+const program = require('commander')
+
+const episodic = require('../')
+
+program
+  .version(version, '-v, --version')
+  .usage('[options] <path>')
+  .option('-k, --api-key <key>', 'specify the OMDb API key (default: OMDB_API_KEY)')
+  .option('-o, --output <path>', 'specify the output path of renamed files')
+  .option('-n, --no-tree', 'don\'t organize files into show name/season directories')
+  .option('-f, --force', 'don\'t ask for confirmation before renaming files')
+  .parse(process.argv)
+
+const [source] = program.args
+
+if (source) {
+  episodic(source, program)
+} else {
+  program.help()
+}
