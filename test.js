@@ -5,9 +5,12 @@ const episodic = require('./')
 jest.mock('fs', () => ({
   mkdir: jest.fn((_path, _mode, cb) => cb(null)),
   readdir: jest.fn((_path, cb) =>
-    cb(null, [1, 2, 3].map(i => `The.Foo.Bar.S01E0${i}.720p.HDTV.x264-WTF.mkv`))
+    cb(
+      null,
+      [1, 2, 3].map(i => `The.Foo.Bar.S01E0${i}.720p.HDTV.x264-WTF.mkv`),
+    ),
   ),
-  rename: jest.fn((_oldPath, _newPath, cb) => cb(null))
+  rename: jest.fn((_oldPath, _newPath, cb) => cb(null)),
 }))
 
 jest.mock('imdb-api', () => ({
@@ -19,24 +22,24 @@ jest.mock('imdb-api', () => ({
           [1, 2, 3].map(episode => ({
             episode,
             name: `Episode #${episode}`,
-            season: 1
-          }))
-        )
+            season: 1,
+          })),
+        ),
       ),
       imdburl: 'https://www.some-imdb-url.com/',
-      start_year: 2018
-    })
-  )
+      start_year: 2018,
+    }),
+  ),
 }))
 
 jest.mock('inquirer', () => ({
-  prompt: jest.fn(() => Promise.resolve({ rename: true }))
+  prompt: jest.fn(() => Promise.resolve({ rename: true })),
 }))
 
 jest.mock('ora', () => () => ({
   start: jest.fn(() => ({
-    stop: jest.fn()
-  }))
+    stop: jest.fn(),
+  })),
 }))
 
 jest.spyOn(console, 'log').mockImplementation(() => {})
@@ -71,7 +74,7 @@ https://www.some-imdb-url.com/
 test('should move files to an output directory', async () => {
   await episodic('path/to/files', {
     apiKey: 'omdb-api-key',
-    output: 'path/to/dest'
+    output: 'path/to/dest',
   })
 
   expect(console.log).toHaveBeenCalledTimes(1)
