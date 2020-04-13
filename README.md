@@ -1,7 +1,7 @@
 # episodic
 
 [![npm package version](https://img.shields.io/npm/v/episodic.svg)](https://www.npmjs.com/package/episodic)
-[![Build status](https://img.shields.io/travis/rbardini/episodic.svg)](https://travis-ci.org/rbardini/episodic)
+[![Build status](https://img.shields.io/github/workflow/status/rbardini/episodic/Main)](https://github.com/rbardini/episodic/actions)
 [![Code coverage](https://img.shields.io/codecov/c/github/rbardini/episodic.svg)](https://codecov.io/gh/rbardini/episodic)
 [![Dependencies status](https://img.shields.io/david/rbardini/episodic.svg)](https://david-dm.org/rbardini/episodic)
 [![devDependencies status](https://img.shields.io/david/dev/rbardini/episodic.svg)](https://david-dm.org/rbardini/episodic?type=dev)
