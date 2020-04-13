@@ -17,8 +17,7 @@
   "scripts": {
     "format": "prettier --write *.js bin/*",
     "lint": "eslint *.js bin/*",
-    "test": "jest",
-    "test:ci": "jest && codecov"
+    "test": "jest"
   },
   "bin": "./bin/episodic",
   "repository": {
@@ -39,7 +38,6 @@
     "video-name-parser": "1.4.6"
   },
   "devDependencies": {
-    "codecov": "3.6.5",
     "eslint": "6.8.0",
     "eslint-config-standard": "14.1.1",
     "eslint-plugin-import": "2.20.2",
