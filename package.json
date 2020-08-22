@@ -29,24 +29,24 @@
   },
   "license": "MIT",
   "dependencies": {
-    "chalk": "4.0.0",
-    "commander": "5.0.0",
-    "imdb-api": "4.0.3",
-    "inquirer": "7.1.0",
+    "chalk": "4.1.0",
+    "commander": "6.0.0",
+    "imdb-api": "4.2.0",
+    "inquirer": "7.3.3",
     "lodash.groupby": "4.6.0",
-    "ora": "4.0.3",
+    "ora": "5.0.0",
     "video-name-parser": "1.4.6"
   },
   "devDependencies": {
-    "eslint": "6.8.0",
+    "eslint": "7.7.0",
     "eslint-config-standard": "14.1.1",
-    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-import": "2.22.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
-    "jest": "25.3.0",
-    "prettier": "2.0.4",
-    "semantic-release": "17.0.4",
+    "jest": "26.4.2",
+    "prettier": "2.0.5",
+    "semantic-release": "17.1.1",
     "strip-ansi": "6.0.0"
   }
 }
