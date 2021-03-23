@@ -22,7 +22,7 @@ program
 const [source] = program.args
 
 if (source) {
-  episodic(source, program)
+  episodic(source, program.opts())
 } else {
   program.help()
 }

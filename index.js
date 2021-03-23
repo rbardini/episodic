@@ -83,7 +83,7 @@ module.exports = async (source, options = {}) => {
             .filter(({ episode }) => metadata.episode.includes(episode))
             .sort((a, b) => a.episode - b.episode)
 
-          if (episodes.length !== metadata.episode.length) return
+          if (episodes.length !== metadata.episode.length) return undefined
 
           const episode = episodes.map(({ episode }) => episode).join('-')
           const name = episodes.map(({ name }) => name).join(' | ')
