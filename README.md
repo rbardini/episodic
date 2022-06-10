@@ -3,8 +3,7 @@
 [![npm package version](https://img.shields.io/npm/v/episodic.svg)](https://www.npmjs.com/package/episodic)
 [![Build status](https://img.shields.io/github/workflow/status/rbardini/episodic/Main)](https://github.com/rbardini/episodic/actions)
 [![Code coverage](https://img.shields.io/codecov/c/github/rbardini/episodic.svg)](https://codecov.io/gh/rbardini/episodic)
-[![Dependencies status](https://img.shields.io/david/rbardini/episodic.svg)](https://david-dm.org/rbardini/episodic)
-[![devDependencies status](https://img.shields.io/david/dev/rbardini/episodic.svg)](https://david-dm.org/rbardini/episodic?type=dev)
+[![Dependencies status](https://img.shields.io/librariesio/release/npm/episodic)](https://libraries.io/npm/episodic)
 [![JavaScript Standard Style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 📺 An opinionated CLI tool to automatically rename TV show releases.
@@ -16,7 +15,7 @@ Requires a valid [OMDb API key](https://www.omdbapi.com/apikey.aspx).
 ## Installation
 
 ```console
-$ npm install -g episodic
+npm install -g episodic
 ```
 
 ## Usage
@@ -33,7 +32,3 @@ Options:
   -f, --force          don't ask for confirmation before renaming files
   -h, --help           output usage information
 ```
-
-## License
-
-MIT

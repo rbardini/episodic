@@ -1,16 +1,12 @@
 {
   "env": {
-    "jest": true,
+    "es2021": true,
     "node": true
   },
-  "extends": "standard",
-  "rules": {
-    "comma-dangle": ["error", {
-      "arrays": "only-multiline",
-      "objects": "only-multiline",
-      "imports": "only-multiline",
-      "exports": "only-multiline",
-      "functions": "only-multiline"
-    }]
-  }
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {}
 }

@@ -1,23 +1,19 @@
-/* eslint-disable no-tabs */
-const stripAnsi = require('strip-ansi')
-const episodic = require('./')
+import { expect, test, vi } from 'vitest'
+import episodic from './index.js'
 
-jest.mock('fs', () => ({
-  mkdir: jest.fn((_path, _mode, cb) => cb(null)),
-  readdir: jest.fn((_path, cb) =>
-    cb(
-      null,
-      [1, 2, 3].map(i => `The.Foo.Bar.S01E0${i}.720p.HDTV.x264-WTF.mkv`),
-    ),
+vi.mock('node:fs/promises', () => ({
+  mkdir: vi.fn(),
+  readdir: vi.fn(() =>
+    [1, 2, 3].map(i => `The.Foo.Bar.S01E0${i}.720p.HDTV.x264-WTF.mkv`),
   ),
-  rename: jest.fn((_oldPath, _newPath, cb) => cb(null)),
+  rename: vi.fn(),
 }))
 
-jest.mock('imdb-api', () => ({
-  get: jest.fn(({ name }) =>
+vi.mock('imdb-api', () => ({
+  get: vi.fn(({ name }) =>
     Promise.resolve({
       name: name.replace(/(^| )(\w)/g, s => s.toUpperCase()),
-      episodes: jest.fn(() =>
+      episodes: vi.fn(() =>
         Promise.resolve(
           [1, 2, 3].map(episode => ({
             episode,
@@ -32,21 +28,23 @@ jest.mock('imdb-api', () => ({
   ),
 }))
 
-jest.mock('inquirer', () => ({
-  prompt: jest.fn(() => Promise.resolve({ rename: true })),
+vi.mock('inquirer', () => ({
+  default: {
+    prompt: vi.fn(() => ({ rename: true })),
+  },
 }))
 
-jest.mock('ora', () => () => ({
-  start: jest.fn(() => ({
-    stop: jest.fn(),
-  })),
+vi.mock('ora', () => ({
+  default: () => ({
+    start: vi.fn(() => ({
+      stop: vi.fn(),
+    })),
+  }),
 }))
 
-jest.spyOn(console, 'log').mockImplementation(() => {})
-jest.spyOn(console, 'error').mockImplementation(() => {})
-jest.spyOn(process, 'exit').mockImplementation(() => {})
-
-delete process.env.OMDB_API_KEY
+vi.spyOn(console, 'log').mockImplementation(() => {})
+vi.spyOn(console, 'error').mockImplementation(() => {})
+vi.spyOn(process, 'exit').mockImplementation(() => {})
 
 test('should error out if no API key is provided', async () => {
   await episodic('path/to/files')
@@ -59,7 +57,7 @@ test('should rename files in-place', async () => {
   await episodic('path/to/files', { apiKey: 'omdb-api-key' })
 
   expect(console.log).toHaveBeenCalledTimes(1)
-  expect(stripAnsi(console.log.mock.calls[0][0])).toMatchInlineSnapshot(`
+  expect(console.log.mock.calls[0][0]).toMatchInlineSnapshot(`
 "
 The Foo Bar (2018)
 https://www.some-imdb-url.com/
@@ -78,7 +76,7 @@ test('should move files to an output directory', async () => {
   })
 
   expect(console.log).toHaveBeenCalledTimes(1)
-  expect(stripAnsi(console.log.mock.calls[0][0])).toMatchInlineSnapshot(`
+  expect(console.log.mock.calls[0][0]).toMatchInlineSnapshot(`
 "
 The Foo Bar (2018)
 https://www.some-imdb-url.com/
@@ -94,7 +92,7 @@ test('should organize files into show name/season directories', async () => {
   await episodic('path/to/files', { apiKey: 'omdb-api-key', tree: true })
 
   expect(console.log).toHaveBeenCalledTimes(1)
-  expect(stripAnsi(console.log.mock.calls[0][0])).toMatchInlineSnapshot(`
+  expect(console.log.mock.calls[0][0]).toMatchInlineSnapshot(`
 "
 The Foo Bar (2018)
 https://www.some-imdb-url.com/
