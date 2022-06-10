@@ -25,8 +25,8 @@
   "exports": "./index.js",
   "bin": "./bin/episodic.js",
   "files": [
-    "./bin/*",
-    "./index.js"
+    "bin/*",
+    "index.js"
   ],
   "scripts": {
     "format": "prettier --ignore-path .gitignore .",
