@@ -4,7 +4,6 @@
 [![Build status](https://img.shields.io/github/workflow/status/rbardini/episodic/Main)](https://github.com/rbardini/episodic/actions)
 [![Code coverage](https://img.shields.io/codecov/c/github/rbardini/episodic.svg)](https://codecov.io/gh/rbardini/episodic)
 [![Dependencies status](https://img.shields.io/librariesio/release/npm/episodic)](https://libraries.io/npm/episodic)
-[![JavaScript Standard Style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 📺 An opinionated CLI tool to automatically rename TV show releases.
 
