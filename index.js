@@ -1,7 +1,6 @@
 import { mkdir, readdir, rename } from 'node:fs/promises'
 import path from 'node:path'
-import chalk from 'chalk'
-import groupBy from 'lodash.groupby'
+import { styleText } from 'node:util'
 import { get as imdbGet } from 'imdb-api'
 import inquirer from 'inquirer'
 import ora from 'ora'
@@ -23,11 +22,13 @@ export default async (source, options = {}) => {
 
   if (apiKey == null) {
     console.error(
-      chalk.red(
+      styleText(
+        'red',
         [
           'No API key found.',
           'Please specify a valid OMDb API key with the `--api-key` option or `OMDB_API_KEY` environment variable.',
-          `You can get one at ${chalk.blue.underline(
+          `You can get one at ${styleText(
+            ['blue', 'underline'],
             'https://www.omdbapi.com/apikey.aspx',
           )}. See \`--help\` for more information.`,
         ].join('\n'),
@@ -40,7 +41,7 @@ export default async (source, options = {}) => {
 
   const filenames = await readdir(sourcePath)
 
-  const metadataMap = groupBy(
+  const metadataMap = Object.groupBy(
     filenames
       .map(filename => ({
         ...parseVideoName(filename),
@@ -48,7 +49,7 @@ export default async (source, options = {}) => {
         extension: path.extname(filename),
       }))
       .filter(({ type }) => type === 'series'),
-    'name',
+    ({ name }) => name,
   )
 
   spinner.text = 'Fetching data'
@@ -63,7 +64,7 @@ export default async (source, options = {}) => {
       return
     }
 
-    const episodeMap = groupBy(episodes, 'season')
+    const episodeMap = Object.groupBy(episodes, ({ season }) => season)
 
     const configs = metadataMap[name]
       .map(metadata => {
@@ -104,15 +105,17 @@ export default async (source, options = {}) => {
     const { configs, tvShow } = result
     const changes = configs.reduce(
       (acc, { sourceName, sourcePath, targetName, targetPath }) =>
-        `${acc}\t${chalk.green(
+        `${acc}\t${styleText(
+          'green',
           `${sourceName} -> ${path.relative(
             sourcePath,
             path.join(targetPath, targetName),
           )}`,
         )}\n`,
-      `\n${chalk.bold(
+      `\n${styleText(
+        'bold',
         `${tvShow.name} (${tvShow.start_year})`,
-      )}\n${chalk.blue.underline(tvShow.imdburl)}\n\n`,
+      )}\n${styleText(['blue', 'underline'], tvShow.imdburl)}\n\n`,
     )
 
     let confirmed = false

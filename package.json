@@ -33,21 +33,19 @@
     "test": "FORCE_COLOR=0 vitest run --coverage"
   },
   "dependencies": {
-    "chalk": "^5.0.0",
-    "commander": "^14.0.0",
+    "commander": "^15.0.0",
     "imdb-api": "^4.4.0",
-    "inquirer": "^12.0.0",
-    "lodash.groupby": "^4.6.0",
+    "inquirer": "^14.0.0",
     "ora": "^9.0.0",
     "video-name-parser": "^1.4.0"
   },
   "devDependencies": {
-    "@vitest/coverage-v8": "4.0.7",
-    "prettier": "3.6.2",
-    "prettier-plugin-packagejson": "2.5.19",
-    "vitest": "4.0.7"
+    "@vitest/coverage-v8": "5.0.1",
+    "prettier": "3.9.8",
+    "prettier-plugin-packagejson": "3.0.2",
+    "vitest": "5.0.1"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   }
 }
